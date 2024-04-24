@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "studio": "bunx drizzle-kit studio --port 3001 --verbose",
     "db:generate": "drizzle-kit generate:mysql",
     "db:push": "drizzle-kit push:mysql"
   },
