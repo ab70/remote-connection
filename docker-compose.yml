@@ -13,7 +13,9 @@ services:
       MYSQL_ROOT_PASSWORD: example
     networks:
       mysqlNet:
-
+        ipv4_address: 172.50.0.3
+    volumes:
+      - mysqlNetData:/var/lib/mysql
 
   adminer:
     image: adminer
@@ -26,3 +28,12 @@ services:
 
 networks:
   mysqlNet:
+    name: mysqlNet
+    ipam:
+      config:
+        - subnet: 172.50.0.0/24
+
+volumes:
+  mysqlNetData:
+
+

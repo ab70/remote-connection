@@ -6,7 +6,9 @@ const app = new Hono()
 
 app.get('/', (c) => {
   // return c.text('Hello Hono!')
-  return c.json({ message: 'Hello Hono!' })
+  console.log("ENV", process.env.HOST);
+  
+  return c.json({ message: 'Hello Hono!', jj:"kk" })
 })
 initRoute(app);
 
