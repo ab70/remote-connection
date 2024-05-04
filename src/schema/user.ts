@@ -2,7 +2,7 @@ import { mysqlTable, serial, varchar } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
     id: serial("id").primaryKey(),
-    username: varchar("name", { length: 256 }),
+    username: varchar("username", { length: 256 }),
     // email: varchar("email", { length: 256 }),
     role: varchar("role", { length: 256 }),
     rights: varchar("rights", { length: 256 }),

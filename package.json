@@ -1,12 +1,12 @@
 {
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "dev1": "node src/index.ts",
     "studio": "bunx drizzle-kit studio --port 3001 --verbose",
     "db:generate": "drizzle-kit generate:mysql",
     "db:push": "drizzle-kit push:mysql"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "drizzle-orm": "^0.30.9",
     "hono": "^4.2.7",
     "mysql2": "^3.9.7"
