@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
-import { db } from './db/db';
-import initRoute from './route/route';
+import { db } from './src/db/db';
+import initRoute from './src/route/route';
 
 const app = new Hono()
 
