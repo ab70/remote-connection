@@ -21,8 +21,7 @@ function authController() {
         // Login user
         async loginUser(c) {
             try {
-                const user: User = await c.req.parseBody();
-                // const user: User = body;
+                const user: User = await c.req.json();
                 const result = await loginUser_Function(user);
                 if (result.success) {
                     const jwtData = { id: result.data?.id }

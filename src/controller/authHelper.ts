@@ -11,8 +11,9 @@ const signUpUser_Function = async (user: User) => {
 }
 const loginUser_Function = async (user: User) => {
     try {
-
         const getUser = await db.select().from(users).where(eq(users.username, user.username))
+        console.log("getUser",getUser);
+        
         if (getUser.length === 0) {
             return { success: false, message: "User not found" }
         }
