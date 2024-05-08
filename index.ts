@@ -3,7 +3,7 @@ import { db } from './src/db/db';
 import initRoute from './src/route/route';
 
 import { createSchema, createYoga } from 'graphql-yoga'; 
-import { createUser, getUserByCredentials } from './src/controller/graphql/auth';
+import { createUser, getUserByCredentials } from './src/graphql/auth';
 const app = new Hono()
 
 // const schema = buildSchema(`
