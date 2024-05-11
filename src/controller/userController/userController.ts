@@ -7,14 +7,11 @@ function userController() {
         // user info
         async getUserInfo(c) {
             try {
-                const user: User = await c.req.parseBody();
-                /* pass from middleware(c, next){
-                    c.set('userId', decoded.id )
-                    await next()
-                }*/
                 const userId: number = c.get('userId')
-                const findUser = await db.select().from(users).where(eq(users.id, userId))
-                return c.json({ success: true, message: "User found", data: findUser })
+                console.log("userId", userId);
+
+                const [{ password, ...others }] = await db.select().from(users).where(eq(users.id, userId))
+                return c.json({ success: true, message: "User found", data: others })
             } catch (err) {
                 return c.json({ success: false, message: "User not found", data: err })
             }

@@ -1,5 +1,6 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from 'mysql2/promise';
+import * as schema from "../schema/user"
 // const connection = await mysql.createConnection({
 //     host: '172.50.0.3',
 //     // host: 'https://dev2.nnur.ca/',
@@ -11,7 +12,7 @@ import mysql from 'mysql2/promise';
 
 const connection = await mysql.createConnection({
     host: process.env.HOST,
-    port: 3306, 
+    port: 3306,
     user: process.env.USER_NAME,
     password: process.env.PASSWORD,
     database: process.env.DATABASE

@@ -4,13 +4,19 @@ import { authMiddleware } from "../middleware/auth";
 import userController from "../controller/userController/userController";
 
 function initRoute(app: Hono) {
-    app.post('/signup', authController().signUpUser)
-    app.post('/login', authController().loginUser)
+    app.get('/api/a', (c) => {
+        // return c.text('Hello Hono!')
+        console.log("ENV", process.env.HOST);
+      
+        return c.json({ message: 'Hello Hono!', jj: "kk" })
+      })
+    app.post('/api/signup', authController().signUpUser)
+    app.post('/api/login', authController().loginUser)
 
-    app.get("/user", authMiddleware, userController().getUserInfo)
+    app.get("/api/user", authMiddleware, userController().getUserInfo)
 
-    app.get('/test', authController().test)
-    app.get('test2', authMiddleware, authController().test2)
+    app.get('/api/test', authController().test)
+    app.get('/api/test2', authMiddleware, authController().test2)
 }
 
 export default initRoute;

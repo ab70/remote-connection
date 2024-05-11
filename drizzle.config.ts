@@ -5,7 +5,8 @@ import type { Config } from "drizzle-kit";
 export default {
     schema: "./src/schema/*",
     out: "./drizzle",
-    driver: 'mysql2',
+    // driver: 'mysql2',
+    dialect: "mysql",
     // dbCredentials: {
     //     // connectionString: process.env.DB_URL,
     //     host: "172.21.0.3",

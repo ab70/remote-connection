@@ -11,21 +11,17 @@ const signUpUser_Function = async (user: User) => {
 }
 const loginUser_Function = async (user: User) => {
     try {
-        const getUser = await db.select().from(users).where(eq(users.username, user.username))
+        const [getUser] = await db.select().from(users).where(eq(users.username, user.username))
         console.log("getUser",getUser);
         
-        if (getUser.length === 0) {
+        if (!getUser) {
             return { success: false, message: "User not found" }
         }
-        const isPasswordCorrect = Bun.password.verifySync(user.password, getUser[0].password || '')
+        const isPasswordCorrect = Bun.password.verifySync(user.password, getUser.password || '')
         if (!isPasswordCorrect) {
             return { success: false, message: "Password is incorrect" }
         }
-
-        if (!isPasswordCorrect) {
-            return { success: false, message: "Password is incorrect" }
-        }
-        return { success: true, message: "User logged in", data: getUser[0] }
+        return { success: true, message: "User logged in", data: getUser }
     } catch (err) {
         return { success: false, message: err.message }
     }

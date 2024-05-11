@@ -11,7 +11,6 @@ function authController() {
                 const body = await c.req.parseBody();
                 const user: User = body;
                 const result = await signUpUser_Function(user);
-                // console.log("User", user);
                 return c.json(user)
             } catch (err) {
                 console.log("err", err);
@@ -23,6 +22,8 @@ function authController() {
             try {
                 const user: User = await c.req.json();
                 const result = await loginUser_Function(user);
+                console.log("result", result);
+                
                 if (result.success) {
                     const jwtData = { id: result.data?.id }
                     const JWT_SECRET: string = process.env.JWT_SECRET || '';
