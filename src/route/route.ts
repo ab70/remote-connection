@@ -12,7 +12,8 @@ function initRoute(app: Hono) {
       })
     app.post('/api/signup', authController().signUpUser)
     app.post('/api/login', authController().loginUser)
-
+    // SSO
+    // app.post("/api/niamsso", authController())
     app.get("/api/user", authMiddleware, userController().getUserInfo)
 
     app.get('/api/test', authController().test)

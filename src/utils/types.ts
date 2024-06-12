@@ -10,3 +10,8 @@ export type User = {
     rights: string,
     password: string
 }
+
+export type niamSSO = {
+    iv: string,
+    encryptedData: string
+}

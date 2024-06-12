@@ -1,4 +1,4 @@
-import { loginUser_Function, signUpUser_Function } from "./authHelper";
+import { decryptNiamSSO_Data, loginUser_Function, signUpUser_Function } from "./authHelper";
 import { User } from "../schema/user"; //type user import 
 import { sign } from "hono/jwt"
 import { setSignedCookie } from "hono/cookie"
@@ -23,7 +23,7 @@ function authController() {
                 const user: User = await c.req.json();
                 const result = await loginUser_Function(user);
                 console.log("result", result);
-                
+
                 if (result.success) {
                     const jwtData = { id: result.data?.id }
                     const JWT_SECRET: string = process.env.JWT_SECRET || '';
@@ -38,6 +38,21 @@ function authController() {
                 return c.json({ success: false, message: err.message })
             }
         },
+        // niam SSO login method
+        async niamSSOLogin(c) {
+            try {
+                const data = await c.req.json()
+                // send this to decrypter
+                const result = await decryptNiamSSO_Data(data)
+                if (result?.success) {
+                    return c.json(result)
+                }
+            } catch (err) {
+                console.log("err", err);
+                return c.json({ success: false, message: err.message })
+            }
+        },
+
         async test(c) {
             try {
                 const payload = { id: 1 }
