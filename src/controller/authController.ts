@@ -41,11 +41,19 @@ function authController() {
         // niam SSO login method
         async niamSSOLogin(c) {
             try {
+                // console.log("request came", c);
+                
                 const data = await c.req.json()
+                // console.log(data);
+                
                 // send this to decrypter
                 const result = await decryptNiamSSO_Data(data)
                 if (result?.success) {
-                    return c.json(result)
+                    const jwtData = { id: result.data?.id }
+                    const JWT_SECRET: string = process.env.JWT_SECRET || '';
+                    const accessToken = await sign({ jwtData, exp: Date.now() + 60 * 15 }, JWT_SECRET);
+                    await setSignedCookie(c, "JWT_TOKEN", accessToken, JWT_SECRET, { httpOnly: false, path: "/", secure: false, signingSecret: JWT_SECRET, sameSite: "Lax" })
+                    return c.json({ success: true, message: "User logged in" })
                 }
             } catch (err) {
                 console.log("err", err);

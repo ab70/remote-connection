@@ -15,6 +15,19 @@ function userController() {
             } catch (err) {
                 return c.json({ success: false, message: "User not found", data: err })
             }
+        },
+        // find a user
+        async findUser(data: any) {
+            try {
+                const [user] = await db.select().from(users).where(eq(users.username, data.username))
+                if (user) {
+                    return { success: true, message: "User found", data: user }
+                } else {
+                    return { success: false, message: "User not found" }
+                }
+            } catch (err) {
+                return { success: false, message: err.message }
+            }
         }
     }
 }
