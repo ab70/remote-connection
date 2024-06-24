@@ -79,7 +79,6 @@ const decryptNiamSSO_Data = async (data: any) => {
         const verfiedToken = await jwtVerify(data.token)
         if (verfiedToken) {
             console.log("token verififed");
-
             // decrypt data
             const decryptedData = await decryptData(verfiedToken)
             if (decryptedData.success === true) {
