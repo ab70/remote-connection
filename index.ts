@@ -6,7 +6,6 @@ import yogaConf from './src/graphql';
 
 const app = new Hono()
 
-
 initRoute(app)
 
 export default {
