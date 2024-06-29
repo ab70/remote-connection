@@ -23,5 +23,5 @@ jobs:
     - name: build & push publish
       run: |
         docker login -u abaloit -p ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker buildx build . --platform linux/arm64,linux/amd64 -t abaloit/remoteconnection:latest
+        docker buildx build . --platform linux/arm64,linux/amd64 -t abaloit/remoteconnection:latest --push
 
