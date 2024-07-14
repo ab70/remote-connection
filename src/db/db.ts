@@ -19,6 +19,8 @@ const connection = await mysql.createConnection({
 });
 const db = drizzle(connection);
 if (connection) {
+    console.log("Host", process.env.HOST);
+    
     console.log("Connection established");
 }
 
